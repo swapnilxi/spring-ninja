@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html >
+<html lang="en">
   <head> 
     <title>Grades</title>
     <style>
@@ -109,13 +109,13 @@
 
     <div class= "container">
       <h2 > Grades </h2>
-      <table id="table"> 
+      <table id="table" d> 
         <tr>
           <th>Student</th>
           <th>Subject</th>
           <th>Score</th>
         </tr>
-        <tr th:object="${grade}">
+        <tr th:each="grade :${grade}">
           <td th:text="*{grade.name}"></td>
           <td th:text="${grade.subject}"></td>
           <td th:text="${grade.scorex}"></td>
