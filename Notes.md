@@ -1,1 +1,1 @@
-
+Based on: th:field="*{name}", upon form submission, Spring Boot passes the name parameter from the payload into a setName() setter. But instead of updating the Grade object's name field with payload from the POST request, it updates it with whatever is coded in setters
