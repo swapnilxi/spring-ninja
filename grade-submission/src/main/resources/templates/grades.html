@@ -119,6 +119,7 @@
           <td th:text="*{grade.name}"></td>
           <td th:text="${grade.subject}"></td>
           <td th:text="${grade.scorex}"></td>
+          <td> <a role="button" class="update" th:href="@{/form (name=${grade.name})}"> Update</a></td>
         </tr>
       </table>
     </div>

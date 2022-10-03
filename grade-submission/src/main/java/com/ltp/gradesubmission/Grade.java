@@ -2,12 +2,13 @@ package com.ltp.gradesubmission;
 
 public class Grade {
     private String name;
-    private String subject;
     private String scorex;
-    public Grade(String name, String subject, String scorex) {
+    private String subject;
+
+    public Grade(String name, String scorex, String subject) {
         this.name = name;
-        this.subject = subject;
         this.scorex = scorex;
+        this.subject = subject;
     }
     public String getName() {
         return name;
@@ -26,6 +27,10 @@ public class Grade {
     }
     public void setScorex(String scorex) {
         this.scorex = scorex;
+    }
+    @Override
+    public String toString() {
+        return "Grade [name=" + name + ", scorex=" + scorex + ", subject=" + subject + "]";
     }
     
     
