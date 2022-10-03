@@ -22,6 +22,13 @@ public class GradeController {
     // new Grade("darshit", "java", "a2")
     // );
     
+    @GetMapping("/")
+    public String getHome(Model model)
+    {
+
+       model.addAttribute("home", studentGrades );
+        return "home";
+    }
     @GetMapping("/grades")
     public String getGrades(Model model)
     {
@@ -31,11 +38,12 @@ public class GradeController {
         return "grades";
     }
 
+   
     public Integer getGradesIndex(String id){
         for(int i=0;i< studentGrades.size(); i++){
             if(studentGrades.get(i).getId().equals(id)) return i;
         }
-        return -1000;
+        return Constants.NOT_FOUND;
     }
 
     @GetMapping("/form")
@@ -43,7 +51,8 @@ public class GradeController {
         //   model.addAttribute("grade", new Grade("", "", ""));
           Grade grade;
       //inialize empty grade if the index doesnt match or else boud with form
-          model.addAttribute("grade", getGradesIndex(id)==-1000 ? new Grade(): studentGrades.get(getGradesIndex(id)));
+      int index= getGradesIndex(id);
+          model.addAttribute("grade", index==Constants.NOT_FOUND ? new Grade(): studentGrades.get(index));
             return "form";
         }
 
@@ -51,7 +60,7 @@ public class GradeController {
         public String submitGrade(Grade grade){
             System.out.println(grade);
             int index= getGradesIndex(grade.getId());
-            if(index==-1000){
+            if(index==Constants.NOT_FOUND){
                 studentGrades.add(grade);
             } else{
                 studentGrades.set(index,grade);
