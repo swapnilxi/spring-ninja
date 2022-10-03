@@ -31,26 +31,26 @@ public class GradeController {
         return "grades";
     }
 
-    public Integer getGradesIndex(String name){
+    public Integer getGradesIndex(String id){
         for(int i=0;i< studentGrades.size(); i++){
-            if(studentGrades.get(i).getName().equals(name)) return i;
+            if(studentGrades.get(i).getId().equals(id)) return i;
         }
         return -1000;
     }
 
     @GetMapping("/form")
-        public String getForm(Model model, @RequestParam(required=false) String name){
+        public String getForm(Model model, @RequestParam(required=false) String id){
         //   model.addAttribute("grade", new Grade("", "", ""));
           Grade grade;
       //inialize empty grade if the index doesnt match or else boud with form
-          model.addAttribute("grade", getGradesIndex(name)==-1000 ? new Grade("","",""): studentGrades.get(getGradesIndex(name)));
+          model.addAttribute("grade", getGradesIndex(id)==-1000 ? new Grade(): studentGrades.get(getGradesIndex(id)));
             return "form";
         }
 
         @PostMapping("/handleSubmit")
         public String submitGrade(Grade grade){
             System.out.println(grade);
-            int index= getGradesIndex(grade.getName());
+            int index= getGradesIndex(grade.getId());
             if(index==-1000){
                 studentGrades.add(grade);
             } else{
