@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,7 +60,7 @@ public class GradeController {
         }
 
         @PostMapping("/handleSubmit")
-        public String submitGrade( @valid Grade grade, BindingResult result){
+        public String submitGrade( @Valid Grade grade, BindingResult result){
             System.out.println(grade);
             System.out.println("has errors?" + result.hasErrors());
             if(result.hasErrors()){

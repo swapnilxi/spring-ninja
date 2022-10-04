@@ -94,9 +94,10 @@
         <input type="hidden" placeholder="id"  th:field="*{id}">
         <input type="text" placeholder="Name"  th:field="*{name}">
         <p style="color:red" th:errors="*{name}"></p>
-        <input type="text" placeholder="Score"  th:field="*{scorex}">  
-        <p style="color:red" th:errors="*{subject}"></p>
+        <input type="text" placeholder="Score"  th:field="*{scorex}"> 
+        <p style="color:red" th:errors="*{scorex}"></p> 
         <input type="text" placeholder="Subject" th:field="*{subject}">
+        <p style="color:red" th:errors="*{subject}"></p>
         <br><br>
         <input type="submit" value="Submit">
       </form>  
