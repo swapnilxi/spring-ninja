@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class GradeController {
     public String getHome(Model model)
     {
 
-       model.addAttribute("home", studentGrades );
+       model.addAttribute("home" );
         return "home";
     }
     @GetMapping("/grades")
@@ -34,7 +35,7 @@ public class GradeController {
     {
 
        // Grade grade= new Grade("swapnil", "history", "a1");
-       model.addAttribute("grade", studentGrades );
+       model.addAttribute("grade", studentGrades);
         return "grades";
     }
 
@@ -57,8 +58,12 @@ public class GradeController {
         }
 
         @PostMapping("/handleSubmit")
-        public String submitGrade(Grade grade){
+        public String submitGrade( @valid Grade grade, BindingResult result){
             System.out.println(grade);
+            System.out.println("has errors?" + result.hasErrors());
+            if(result.hasErrors()){
+                return "form";
+            }
             int index= getGradesIndex(grade.getId());
             if(index==Constants.NOT_FOUND){
                 studentGrades.add(grade);
