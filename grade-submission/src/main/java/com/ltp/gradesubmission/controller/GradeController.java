@@ -1,4 +1,4 @@
-package com.ltp.gradesubmission;
+package com.ltp.gradesubmission.controller;
 
 
 import java.util.ArrayList;
@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ltp.gradesubmission.Constants;
+import com.ltp.gradesubmission.Grade;
+import com.ltp.gradesubmission.repository.GradeRepository;
+
 @Controller
 public class GradeController {
-    List<Grade> studentGrades = new ArrayList<>();
+    GradeRepository gradeRepository= new GradeRepository();
+    // List<Grade> studentGrades = new ArrayList<>();//moved to repository class
     // List<Grade> studentGrades=  Arrays.asList(
     // new Grade("swapnil", "computerVision", "a"),
         
@@ -37,14 +42,14 @@ public class GradeController {
     {
 
        // Grade grade= new Grade("swapnil", "history", "a1");
-       model.addAttribute("grade", studentGrades);
+       model.addAttribute("grade", gradeRepository.getGrades());
         return "grades";
     }
 
    
     public Integer getGradesIndex(String id){
-        for(int i=0;i< studentGrades.size(); i++){
-            if(studentGrades.get(i).getId().equals(id)) return i;
+        for(int i=0;i< gradeRepository.getGrades().size(); i++){
+            if(((Grade) gradeRepository.getGrades().get(i)).getId().equals(id)) return i;
         }
         return Constants.NOT_FOUND;
     }
@@ -55,7 +60,7 @@ public class GradeController {
           Grade grade;
       //inialize empty grade if the index doesnt match or else boud with form
       int index= getGradesIndex(id);
-          model.addAttribute("grade", index==Constants.NOT_FOUND ? new Grade(): studentGrades.get(index));
+          model.addAttribute("grade", index==Constants.NOT_FOUND ? new Grade(): gradeRepository.getGrade(index));
             return "form";
         }
 
@@ -68,9 +73,9 @@ public class GradeController {
             }
             int index= getGradesIndex(grade.getId());
             if(index==Constants.NOT_FOUND){
-                studentGrades.add(grade);
+                gradeRepository.addGrade(grade);
             } else{
-                studentGrades.set(index,grade);
+                gradeRepository.updateGrade(index, grade);
             }
         
             return "redirect:/grades";
