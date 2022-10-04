@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 public class Grade {
     @NotBlank(message= "name cannnot be blank")
     private String name;
+    @Scorex(message = "Score Must be a Letter Grade , eg : A+, A..")
     private String scorex;
     @NotBlank(message= "Subject field cannot be blank")
     private String subject;
