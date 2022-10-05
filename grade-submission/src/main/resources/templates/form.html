@@ -91,7 +91,7 @@
     <div class="container">
       <h2> Grade Portal </h2>
       <form method="post" th:object="${grade}" th:action="@{/handleSubmit}"> 
-        <input type="hidden" placeholder="id"  th:field="*{id}">
+        <input type="hidden" placeholder="id"  th:field="*{id}"> 
         <input type="text" placeholder="Name"  th:field="*{name}">
         <p style="color:red" th:errors="*{name}"></p>
         <input type="text" placeholder="Score"  th:field="*{scorex}"> 

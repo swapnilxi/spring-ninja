@@ -8,7 +8,7 @@ import com.ltp.gradesubmission.Grade;
 public class GradeRepository {
     private List <Grade> studentGrades= new ArrayList<>();
 
-    public Grade getGrade(int index){
+    public Grade getGradeIndex(int index){
         return studentGrades.get(index);
     }
     public void  addGrade( Grade grade){
@@ -18,7 +18,7 @@ public class GradeRepository {
         studentGrades.set( index, grade);
 
     }
-    public List getGrades(){
-         return studentGrades;
+    public List<Grade> getGrades() {
+        return studentGrades;
     }
 }
