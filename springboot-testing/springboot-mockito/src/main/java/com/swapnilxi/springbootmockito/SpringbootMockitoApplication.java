@@ -1,14 +1,13 @@
-package com.swapnilxi.springtraining;
+package com.swapnilxi.springbootmockito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringTrainingApplication {
+public class SpringbootMockitoApplication {
 
 	public static void main(String[] args) {
-		System.out.println("this is spring boot");
-		SpringApplication.run(SpringTrainingApplication.class, args);
+		SpringApplication.run(SpringbootMockitoApplication.class, args);
 	}
 
 }
